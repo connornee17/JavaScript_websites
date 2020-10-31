@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="Lab1.css">
+
+  <meta charset="UTF-8"/>
+  <meta name="description"  content="Data Visualisation"/>
+  <meta name="keywords"     content="HTML, CSS, D3"/>
+  <meta name="author"       content="Connor Nee-Salvador"/>
+
+  <title>Task 2.2 D3 Bar Chart</title>
+
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+
+</head>
+
+  <body>
+
+    <h1>Update Data</h1>
+
+    <button id="buttonadd" type="button">Add</button>
+    <button id="buttonremove" type="button">Remove</button>
+    <br>
+    <br>
+    <br>
+    <br>
+    <script>
+
+     var w = 500;
+     var h = 300;
+     var barpadding = 1;
+
+     var dataset = [14, 5, 26, 23, 9, 15, 20, 25, 5, 29, 15];
+
+     var xScale = d3.scaleBand()
+            .domain(d3.range(dataset.length))
+            .rangeRound([0,w])
+            .paddingInner(0.05);
+
+     var yScale = d3.scaleLinear()
+            .domain([0, d3.max(dataset)])
+            .range([0,h]);
+
+
+
+
+
+     var svg = d3.select("body")
+                 .append("svg")
+                 .attr("width", w)
+                 .attr("height", h);
+
+      svg.selectAll("rect")
+          .data(dataset)
+          .enter()
+          .append("rect")
+          .attr("x", function(d, i) {
+            return xScale(i);
+          })
+          .attr("y", function(d) {
+            return h - yScale(d);
+          })
+          .attr("width", xScale.bandwidth())
+          .attr("height", function(d) {
+            return yScale(d);
+          })
+          .attr("fill", "blue")
+
+          .on("mouseover", function(d) {
+            var xPosition = parseFloat(d3.select(this).attr("x"))
+            var yPosition = parseFloat(d3.select(this).attr("y"))
+            svg.append("text")
+                .attr("id", "tooltip")
+                .attr("x", xPosition + 15)
+                .attr("y", yPosition + 20)
+                .text(d);
+            d3.select(this)
+               .attr("fill", "orange");
+          })
+          .on("mouseout", function(d) {
+            d3.select("#tooltip").remove();
+            d3.select(this)
+               .attr("fill", "blue");
+          });
+          
+
+     d3.select("#buttonadd")
+     	.on("click", function() {
+
+		     var maxValue = 25;
+		     var newNumber = Math.floor(Math.random()* maxValue);
+		     dataset.push(newNumber);
+
+		     xScale.domain(d3.range(dataset.length));
+
+		     var bars = svg.selectAll("rect")
+		     	.data(dataset)
+		     	bars.enter()
+		     		.append("rect")
+		     		.merge(bars)
+		     		.transition()
+		     		.duration(500)
+		     		.attr("x", function(d, i) {
+		     			return xScale(i)
+		     		})
+		     		.attr("y", function(d) {
+		     			return h - yScale(d);
+		     		})
+		     		.attr("width", xScale.bandwidth())
+		     		.attr("height", function(d) {
+		     			return yScale(d);
+		     		})
+		     		.attr("fill", "blue")
+		     		.on("mouseover", function(d) {
+            var xPosition = parseFloat(d3.select(this).attr("x"))
+            var yPosition = parseFloat(d3.select(this).attr("y"))
+            svg.append("text")
+                .attr("id", "tooltip")
+                .attr("x", xPosition + 15)
+                .attr("y", yPosition + 20)
+                .text(d);
+            d3.select(this)
+               .attr("fill", "orange");
+          })
+          .on("mouseout", function(d) {
+            d3.select("#tooltip").remove();
+            d3.select(this)
+               .attr("fill", "blue");
+          });
+          
+
+     	});
+
+
+      
+
+     d3.select("#buttonremove")
+     	.on("click", function() {
+
+     	dataset.shift();
+
+		     var bars = svg.selectAll("rect")
+		     	.data(dataset)
+		     	bars.exit()
+
+		     		.attr("x", w)
+		     		.remove()
+		     		.append("rect")
+		     		.merge(bars)
+		     		.transition()
+		     		.duration(500)
+		     		.attr("x", function(d, i) {
+		     			return xScale(i)
+		     		})
+		     		.attr("y", function(d) {
+		     			return h - yScale(d);
+		     		})
+		     		.attr("width", xScale.bandwidth())
+		     		.attr("height", function(d) {
+		     			return yScale(d);
+		     		})
+		     		.attr("fill", "blue");
+
+		});
+     
+     		
+
+     
+
+    </script>
+
+    <footer style="color:grey">COS30045 Data Visualisation<br>Connor Nee-Salvador</footer>
+
+  </body>
+     	
+</html>

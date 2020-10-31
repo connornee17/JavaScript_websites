@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="description" content="Assignment 1 for Web Apps" />
+	<meta name="keywords" content="HTML, Form, tags" />
+	<meta name="author" content="Connor"  />
+	<link href= "style.css" rel="stylesheet"/>
+	<link href='http://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister' rel='stylesheet'/>
+	<title>Co2 Emissions and rising sea-levels</title>
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+  	<script src="emission.js"></script>
+</head>
+<body>
+<article>
+	<header><h1>Co2 EMISSIONS AND RISING SEA-LEVELS</h1></header>
+	
+	<section class="section1">
+		<h2>Overall Co2 Emissions per country</h2>
+		
+		<p id ="co2chart" class="description">
+			<button id="buttonaus" type="button">Australia</button>
+			<button id="buttonusa" type="button">America(US)</button>
+			<button id="buttonchina" type="button">China</button>	
+		</p>
+		<p class="description">As you can see from the chart. The overall Co2 emission levels for each country does vary (America and China having the most Co2 emissions compared to Australia which is reletively low). These results however do show correlation with the results of the rising sea-levels chart that can be found bellow.
+		<br>
+		<br>
+		All Co2 emission data presented is a sum of all the emission types for each country being: Transportation, Power Industry, Buildings, Non-combustion, and Other Industrial Combustion. 
+		<br>
+		<br>
+		Co2 Emissions data was taken from: European Commission, Joint Research Centre (EC-JRC)/Netherlands Environmental Assessment Agency (PBL). Emissions Database for Global Atmospheric Research (EDGAR), release EDGARv4.3.2_FT2016  (1970 - 2016), http://edgar.jrc.ec.europa.eu/overview.php?v=booklet2017&dst=CO2emi, 2017.
+		</p>
+		<br>
+    	<br>
+
+    	<h2>Ajusted sea-level over time</h2>
+    	<p id ="seachart" class="description"></p>
+    	<p class="description">Based on the rising sea-level over time having the same trend as the rising Co2 levels from the previous chart, we can deduce that the rising of the Co2 levels over the past 50 years have been increasing the global temperature of the planet, which is what causes the sea-level to increase overtime (from the ice melting on both planetary poles).
+    	<br>
+    	<br>
+    	All sea-level data sources were taken from CSIRO from 2015, except for the final two recorded years (2014, 2015) which was taken from the NOAA, 2016.
+    	</p>
+
+	</section>
+	<footer>
+		<p>COS30045</p>
+		<p>&#169; Swinburne University of Technology</p>
+		<p>Making A Difference Project</p>
+	</footer>
+</article>
+</body>
+</html>
